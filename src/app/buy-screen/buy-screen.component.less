@@ -1,0 +1,420 @@
+@main_orange:#ffa502;
+@main_gray:#ecf0f1;
+@font_type:Arial, "Helvetica, sans-serif";
+@white_shadow:-12px -12px 24px 0 rgba(255,255,255,0.8);
+@black_shadow:12px 12px 24px 0 rgba(108,141,194,0.5);
+
+*{
+    font-family: @font_type;
+}
+.general-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    .buy-text-container{
+        width:25%;
+        height: 100vh;
+        background-color: @main_orange;
+        box-shadow: @white_shadow, @black_shadow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+            font-size:75px;
+            color:white;
+            writing-mode:vertical-lr;
+            animation-name: buyAnimate;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+    }
+    .buy-form-container{
+        width:75%;
+        height: 100vh;
+        padding:20px 40px;
+        box-sizing: border-box;
+        font-family: @font_type;
+        .product-container{
+            width:100%;
+            height: 90% !important;
+            overflow: auto;
+            // background-color: pink;
+            .product-in-container{
+                // background-color: green;
+                padding:12px 15px;
+                border-bottom:1px solid gray;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .product-info{
+                    display: flex;
+                    align-items: center;
+                    .remove-button-area{
+                        margin-right:10px;
+                        box-sizing: border-box;
+                        .remove-product{
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            border: none;
+                            background-color: #ff3838;
+                            color: white;
+                            cursor: pointer;
+                            box-shadow: @white_shadow, @black_shadow;
+                            padding:8px;
+                            &:hover{
+                                opacity: .7;
+                                transition: .3s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .buy-container{
+            // background-color: green;
+            width:100%;
+            height: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            button{
+                width:80%;
+                height: 50%;
+                outline: none;
+                border:1px solid rgba(255,255,255,.3);
+                background-color: #26de81;
+                color:white;
+                box-shadow: -6px -6px 24px 0 rgba(108,141,194,0.4);
+                transition: .3s;
+                font-family: @font_type;
+                cursor: pointer;
+                &:hover{
+                    opacity: .5;
+                    transition: .3s;
+                }
+            }
+        }
+    }
+}
+.pop-up-container{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .main-pop-up{
+        width:100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,.8);
+        box-shadow: 2px 2px 25px rgba(0,0,0,.3);
+        border-radius: 2px;
+        .delete-icon{
+            font-size:30px !important;
+            margin:15px 25px;
+            cursor: pointer;
+            position: absolute;
+            top:0px;
+            right:0px;
+            color: @main_gray;
+        }
+        .inner-main{
+            width:450px;
+            height: 550px;
+            background-color: @main_gray;
+            box-shadow: 4px 4px 30px rgba(0,0,0,.3);
+            .up-inner-main{   
+                width: 100%;
+                height: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                perspective: 600px;
+                
+                .pay-card-container{
+                    width:350px;
+                    margin-bottom:25px;
+                    height: 200px;
+                    border-radius: 10px;
+                    // background-color: #16044a;
+                    background-color: #F7B11A;
+                    box-shadow: 5px 5px 55px rgba(0,0,0,.3);
+                    position: relative;
+                    transition: transform 1s;
+                    transform-style: preserve-3d;
+                    
+                    .pay-card-front, .pay-card-back{
+                        width:100%;
+                        height: 100%;
+                        position: absolute;
+                        backface-visibility: hidden;
+                        transition: transform 1s;
+                        transform-style: preserve-3d;
+                    }
+                    .pay-card-front{
+                        display: flex;
+                        flex-direction: column;
+                        padding:1rem 2rem;
+                        box-sizing: border-box;
+                        .up-card,.middle-card,.down-card{
+                            width:100%;
+                        }
+                        .up-card{
+                            // background-color: red;
+                            height: 40%;
+                            .card-logo{
+                                width:60px;
+                                height: 40px;
+                            }
+                        }
+                        .middle-card{
+                            // background-color: gray;
+                            height: 30%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            .middle-in-card{
+                                width:80%;
+                                // background-color: red;
+                                display: flex;
+                                justify-content: space-between;
+                                div{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width:25%;
+                                    height: 100%;
+                                }
+                            }
+                        }
+                        .down-card{
+                            // background-color: yellow;
+                            width: 100%;
+                            height: 30%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: flex-end;
+                            flex-direction: row;
+                            .down-1 > label,.down-2 >label{
+                                font-size:12px;
+                            }
+                            .down-1{
+                                // background-color: red;
+                                width:70%;
+                                height: 37px;
+                            }
+                            .down-2{
+                                // background-color: green;
+                                width:30%;
+                                height: 35px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: flex-end;
+                                flex-direction: column;
+                            }
+                        }
+                    }
+                    .pay-card-back{
+                        transform: rotateY(180deg);
+                        font-family: @font_type;
+                        .pay-card-back-container{
+                            margin-top:30px;
+                            display: flex;
+                            flex-direction: column;
+                            label{
+                                font-size: 15px;
+                                padding-bottom: 5px;
+                            }
+                            .ortak{
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                                padding-right:25px !important;
+                                box-sizing: border-box;
+                            }
+                            .long-line{
+                                    width:100%;
+                                    height: 50px;
+                                    
+                                    background-color: #ecf0f1;
+                            }
+                        }
+                    }
+                }
+                .pay-card-container.is-flipped{
+                    transform: rotateY(180deg);
+                }
+            }
+            .down-inner-main{
+                width: 100%;
+                height: 70%;
+                padding: 20px;
+                box-sizing: border-box;
+                .required-class{
+                    color: red;
+                    font-size:12px;
+                    font-family: @font_type;
+                }
+                .up-input{
+                    width:100%;
+                    display: flex;
+                    flex-direction: column;
+                    margin:25px 0px;
+                    label{
+                        font-size:11px;
+                        // color:gray;
+                    }
+                    input[type="text"]{
+                        padding:7px 10px;
+                        margin-top:3px;
+                        background-color: @main_gray;
+                        border: 1px solid rgba(0,0,0,.4);
+                        outline: none;
+                        border-radius: 3px;
+                        &:focus{
+                            box-shadow: 1px 1px 15px rgba(0,0,0,.1);
+                            border-color:@main_orange;
+                        }
+                    }
+                }
+                .down-input{
+                    width: 100%;
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: row;
+
+                    .down-select-input{
+                        width:70%;
+                        height: 60px;
+                        // background-color: yellow;
+                        display: flex;
+                        flex-direction: column;
+                        label{
+                            font-size:11px;
+                            margin-bottom:4px;
+                        }
+                        .select-container{
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            
+                            select{
+                                width: 48%;
+                                height: 70%;
+                                margin:3px 0px;
+                                margin-bottom:15px;
+                                box-sizing: border-box;
+                                border: 1px solid rgba(0,0,0,.4);
+                                outline: none;
+                                border-radius: 2px;
+                                background-color: @main_gray;
+                                &:focus{
+                                    border-color:@main_orange;
+                                    box-shadow: 1px 1px 15px rgba(0,0,0,.1);
+                                }
+                            }
+                            select:first-child{
+                                margin-right: 1%;
+                            }
+                        }
+                    }
+                    .down-cvv-input{
+                        width:30%;
+                        height: 60px;
+                        // background-color: pink;
+                        display: flex;
+                        flex-direction: column;
+                        label{
+                            font-size:11px;
+                            // color:gray;
+                        }
+                        input[type="text"]{
+                            width:100%;
+                            padding:7px 10px;
+                            box-sizing: border-box;
+                            margin-top:3px;
+                            background-color: @main_gray;
+                            border: 1px solid rgba(0,0,0,.4);
+                            outline: none;
+                            border-radius: 3px;
+                            &:focus{
+                                box-shadow: 1px 1px 15px rgba(0,0,0,.1);
+                                border-color:@main_orange;
+                            }
+                        }
+                    }
+                    
+                }
+                .button-input{
+                    width:100%;
+                    margin-top:25px;
+                    .reset-buy-btn{
+                        margin-top:5px;
+                        background-color: #EA2027;
+                    }
+                    .disabled-btn{
+                        background-color: gray;
+                        opacity: .1;
+                        cursor: no-drop !important;
+                            &:hover{
+                                opacity: .1;
+                            }
+                    }
+                    button{
+                        width:100%;
+                        cursor: pointer;
+                        border-radius: 3px;
+                        padding:7px 10px !important;
+                        background-color: #1e3799;
+                        color:white;
+                        outline: none;
+                        border:none;
+                        font-size: 12px;
+                        box-shadow: 2px 2px 18px rgba(74, 105, 189,.5);
+                        transition: .5s;
+                        &:hover{
+                            opacity: .5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Buy yazısı animasyon
+
+@keyframes buyAnimate{
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.2;
+    }
+}
+
+// Responsive (mobilde solda yazan Turuncu arka planlı BUY yazısı gidiyor.)
+@media only screen and (max-width: 800px){
+    .buy-text-container{
+        width:0% !important;
+    }
+    .buy-container{
+        width:100% !important;
+    }
+    .buy-form-container{
+        width:100% !important;
+    }
+    .buy-text-container{
+        display: none !important;
+    }
+
+}

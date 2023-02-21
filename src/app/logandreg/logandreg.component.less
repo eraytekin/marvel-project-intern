@@ -1,0 +1,209 @@
+@main_orange:#ffa502;
+@main_gray:#ecf0f1;
+@font_type:Arial, "Helvetica, sans-serif";
+
+.container-main{// ana main
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: @main_gray;
+    box-shadow: inset 2px 2px 15px rgba(255,255,255,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:10px 20px;
+    box-sizing: border-box;
+    .container-middle{// ana mainin altındaki ilk ana main(logo-field ve form-field containerlerinin parent'ı)
+        width:800px;
+        height: 415px;
+        background-color: @main_gray;
+        border-radius: 2px;
+        box-shadow: -12px -12px 24px 0 rgba(255,255,255,0.8),
+                    12px 12px 24px 0 rgba(108,141,194,0.5);
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        
+        .just-show-mobile{
+            display: none ;
+        }
+        .form-field{
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width:40%;
+            .select-register-login{
+                width: 100%;
+                height: 10%;
+                display: flex;
+                flex-direction: row;
+                .register-button, .login-button{
+                    width:50%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    button{
+                        width:100%;
+                        height: 100%;
+                        border: none;
+                        outline: none;
+                        background-color: #ecf0f1;
+                        transition: .5s;
+                        font-family: @font_type;
+                        color:gray;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        &:hover{
+                            opacity: .5;
+                            cursor: pointer;
+                            transition: .5s;
+                            background-color: white;
+                            text-decoration: underline;
+                        }
+                        &:focus{
+                            background-color: white;
+                            color: black !important;
+                            opacity: .5;
+                        }
+                    }
+                }
+            }
+            .form-header{
+                width: 100%;
+                height: 90%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                form{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+            .page-header{
+                text-align: center;
+                margin:15px 0px;
+                font-family: @font_type;
+                margin-top:20px;
+            }
+            .divider{// formları hizalamak için kullandığım container
+                display: flex;
+                width:200px;
+                justify-content: center;
+                flex-direction: column;
+                margin-top:12px;
+                font-family: @font_type;
+                font-size:12px;
+                .divider-icon-input-container{
+                    position: relative;
+                    .divider-icon{
+                        position: absolute;
+                        right:-2px;
+                        font-size:14px;
+                        background-color: @main_gray;
+                        cursor: pointer;
+                    }
+                }
+                .custom-input{
+                    border:none;
+                    border-bottom:1px solid gray;
+                    background:none;
+                    outline: none;
+                    padding: 2px 0px;
+                    width:100%;
+                    &:focus{
+                        border-color:black;
+                    }
+                }
+                .custom-select{
+                    outline: none;
+                    background:none;
+                    padding:2px 0px;
+                    margin-top:5px;
+                    &:focus{
+                        border-color:black;
+                    }
+                }
+                button{
+                    width:100%;
+                    cursor: pointer;
+                    border-radius: 2px;
+                    border:none;
+                    outline:none;
+                    padding:3px 5px;
+                    box-shadow: -2px -2px 5px 0 rgba(255,255,255,0.8),
+                    2px 2px 5px 0 rgba(108,141,194,0.5);
+                    transition: .5s;
+                    &:hover{
+                        opacity: .5;
+                        transition: .5s;
+                    }
+                }
+                .log-in-button{
+                    background-color: @main_orange;
+                    color:white;
+                    margin-left:2px;
+                }
+                .register-button{
+                    margin-right:2px; 
+                    background-color: @main_orange;
+                    color:white;
+                }
+                .reset-button{
+                    background-color: #EA2027;
+                    color:white;
+                }
+                .disabled-btn{
+                    background-color: gray;
+                    opacity: .1;
+                    cursor: no-drop;
+                    &:hover{
+                        opacity: .1;
+                    }
+                }
+            }
+            .divider:nth-last-of-type(2){
+                display: flex;
+                width:100%;
+                justify-content: center;
+                flex-direction: row;
+                margin-top:25px;
+            }
+        }
+        .logo-field{
+            width:60%;
+            text-transform: uppercase;
+            font-family: @font_type;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size:35px;
+            border-right:1px solid gray;
+            // border-right:1px solid gray;
+        }
+        
+    }
+}
+//
+@media only screen and (max-width: 600px) { 
+    .container-middle{
+        width:400px !important;
+        height: 500px !important;
+        flex-direction: column !important;
+        align-items: center;
+        .logo-field,.form-field{
+            width: 100% !important;
+        }
+        .logo-field{
+            border:none !important;
+        }
+        .just-show-mobile{
+            display: block !important;
+        }
+    }
+ }
+

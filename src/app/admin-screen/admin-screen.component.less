@@ -1,0 +1,149 @@
+@main_orange:#ffa502;
+@main_gray:#ecf0f1;
+@font_type:Arial, "Helvetica, sans-serif";
+@white_shadow:-12px -12px 24px 0 rgba(255,255,255,0.8);
+@black_shadow:12px 12px 24px 0 rgba(108,141,194,0.5);
+
+.big-admin-container{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height: 100vh;
+    .admin-header-container{
+        background-color: @main_orange;
+        padding: 10px 5px;
+        height: 20px;
+        box-shadow: 6px 6px 20px 0 rgba(108,141,194,0.3);
+        .admin-text, .admin-icon{
+            color:white;
+            font-family: @font_type;
+            margin-left:10px;
+        }
+    }
+    .admin-content-container{
+        width:100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 10px;
+        box-sizing: border-box !important;
+        .search-content-container{
+            height: 100%;
+            width: 900px;
+            .search-bar-container{
+                height: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .search-bar{
+                    width:900px;
+                    height: 60px;
+                    background-color: #f5f6fa;
+                    box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .search-icon-container{
+                        width:10%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color:gray;
+                        cursor: pointer;
+                    }
+                    .input-search-container{
+                        width:90%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        overflow: hidden;
+                        input[type="text"]{
+                            width: 100%;
+                            height: 100%;
+                            border:none;
+                            outline: none;
+                            padding-left:20px;
+                            font-family: @font_type;
+                            font-size: 18px;
+                            // background-color: ;
+                        }
+                    }
+                }
+            }
+            .content-container{
+                width:100%;
+                height: 85%;
+                overflow: auto; //aşağı kayma durumu burada
+                display: flex;
+                flex-direction: column;
+                box-shadow: @white_shadow, @black_shadow;
+                .customer-card{
+                    width: 100%;
+                    padding: 15px 20px;
+                    box-sizing: border-box;
+                    background-color:  @main_gray;
+                    border-bottom:1px solid gray;
+                    font-family: @font_type;
+                    color:gray;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom:12px;
+                    .info-area{
+                        display: flex;
+                        justify-content: space-between;
+                        width:200px;
+                        .name-area{
+                            color:black;
+                        }
+                    }
+                    .all-buttons{
+                        button{
+                            cursor: pointer;
+                            border-radius: 2px;
+                            border:none;
+                            outline:none;
+                            padding:3px 5px !important;
+                            box-shadow: -2px -2px 5px 0 rgba(255,255,255,0.8),
+                            2px 2px 5px 0 rgba(108,141,194,0.5);
+                            transition: .5s;
+                            font-size:12px;
+                            &:hover{
+                                opacity: .5;
+                                transition: .5s;
+                            }
+                        }
+                        .all-buy-button{
+                            background-color: @main_orange;
+                            color:white;
+                            margin-right:5px;
+                        }
+                        .all-remove-button{
+                            background-color: #EA2027;
+                            color:white;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+@media only screen and (max-width:900px) { 
+    .search-content-container{
+        width: 100% !important;
+    }
+    .search-bar{
+        width: 100% !important;
+
+    }
+    .search-icon-container{
+        width: 20% !important;
+    }
+    .input-search-container{
+        width: 80% !important;
+    }
+ }
+

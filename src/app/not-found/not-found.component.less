@@ -1,0 +1,39 @@
+@font_type:Arial, "Helvetica, sans-serif";
+@main_orange: #ffa502;
+.not-found-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+    b{
+        font-family: @font_type;
+        font-size: 55px;
+        text-align: center;
+        text-shadow: -6px -6px rgba(255,255,255,0.8),
+                        6px 6px rgba(108,141,194,0.5);
+        animation-name: animateForNotFound;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+    button{
+        width:300px;
+        cursor: pointer;
+        border-radius: 2px;
+        border:none;
+        outline:none;
+        padding:5px 12px;
+        box-shadow: -2px -2px 5px 0 rgba(255,255,255,0.8),
+                    2px 2px 5px 0 rgba(108,141,194,0.5);
+        transition: .5s;
+        background-color: @main_orange;
+        color:white;
+        margin:20px 2px 0px 0px;
+        text-decoration: underline;
+    }
+}
+@keyframes animateForNotFound {
+    from {opacity: 0.3}
+    to {opacity: 1}
+  }

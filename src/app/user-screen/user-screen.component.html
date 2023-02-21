@@ -1,0 +1,56 @@
+<div class="parent-container">
+    <div class="card-parent-container">
+        <div class="card-container" *ngFor="let card of allCards">
+            <div class="up-card">
+                <img [src]="card.url">
+            </div>
+            <div class="down-card">
+                <div class="down-up-area">
+                    <h3>{{ card.name }}</h3>
+                    <!-- <span class="down-up-area-description">{{ card.description }}</span> -->
+                </div>
+                <div class="down-middle-area">
+                    <div class="in-the-middle-area">
+                        <button (click)="increaseBtn(card)">+</button>
+                        <div class="piece">{{ card.count }}</div>
+                        <button (click)="decreaseBtn(card)">-</button>
+                    </div>
+                </div>
+                <div class="down-down-area">
+                    <div class="down-down-up-area">
+                        <span>{{ card.price }}$</span>
+                    </div>
+                    <div class="down-down-down-area">
+                        <button>BUY <fa-icon [icon]="faCartShopping" class="fa-beat-fade" style="margin-left:4px;width:20px;height: 20px;color:white;line-height: 20px;"></fa-icon></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bag-container">
+        <!-- siparişler kısmı açılmadan sadece sepet ikonunun gözüktüğü kısım -->
+        <div class="icon-container">
+            <fa-icon [icon]="faCartShopping" class="bag-icon" (click)="showOrderContainer()"></fa-icon>
+            <div class="red-alert">0</div>
+        </div>
+        <!--siparişler kısmı açılınca gözüken kısım-->
+        <div class="order-container" *ngIf="showOrderCont">
+            <div class="close-icon"><fa-icon [icon]="faXmark" class="xmark-icon" (click)="closeOrderContainer()"></fa-icon></div>
+            <div class="my-order-header">MY ORDERS</div>
+            <div class="my-order">
+                <div class="order-in-the-bag" *ngFor="let bagProduct of allCards">
+                    <div class="left-side">
+                        <h4>{{ bagProduct.name }}</h4>
+                        <span>burası db.json'da var</span>
+                    </div>
+                    <div class="right-side">
+                        <span>{{ bagProduct.count }}</span>/<span>{{ bagProduct.price }}$</span>
+                    </div>
+                </div>
+            </div>
+            <div class="go-to-buy-component">
+                <button routerLink="/buy">GO TO BUY SCREEN  <fa-icon [icon]="faCreditCard" class="xmark-icon" (click)="closeOrderContainer()"></fa-icon></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="container-main">
+    <div class="container-middle">
+      <!-- solda yazan register login yazısı burada -->
+      <div class="logo-field">{{ pageTitle }}</div>
+      <!-- mobilde login register yazısının altında çıkan çizgi burada -->
+      <hr width="100" align="center" class="just-show-mobile">
+      <!-- soldaki yazıyı ve sağdaki formu baz alan container burası -->
+      <div class="form-field">
+        <!-- Register/ login screen yazısı burada -->
+        <div class="select-register-login">
+          <div class="register-button">
+            <button (click)="changePageRegister()">Register</button>
+          </div>
+          <div class="login-button">
+            <button (click)="changePageLogIn()">Login</button>
+          </div>
+        </div>
+        <!-- Form elemanları burada -->
+        <div class="form-header">
+
+          <div class="page-header">{{ pageTitle }} SCREEN</div>
+          
+          <form [formGroup]="profileForm" (ngSubmit)="onDoSubmit()" *ngIf="pageTitle == 'LOG IN'">
+              <div class="divider-container">
+                <div class="divider">
+                    <span>User Name</span>
+                    <input type="text" class="custom-input" formControlName="name"/>
+                    <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)">
+                        <div *ngIf="profileForm.controls['name'].errors" style="color:red">
+                            *Name is required.
+                        </div>
+                    </div>
+                  </div>
+                  <div class="divider">
+                    <span>Password</span>
+                    <div class="divider-icon-input-container">
+                      <input [type]="passwordType" class="custom-input" formControlName="passwordInForm"/>
+                      <fa-icon [icon]="faEyeSlash" class="divider-icon" (click)="showPasswordEye()" *ngIf="closeEye2"></fa-icon>
+                      <fa-icon [icon]="faEye" class="divider-icon" (click)="dontShowPasswordEye()" *ngIf="openEye2"></fa-icon>
+                    </div>
+                    <div *ngIf="profileForm.controls['passwordInForm'].invalid && (profileForm.controls['passwordInForm'].dirty || profileForm.controls['passwordInForm'].touched)">
+                        <div *ngIf="profileForm.controls['passwordInForm'].errors" style="color:red">
+                            *Name is required.
+                        </div>
+                    </div>
+                  </div>
+                  <div class="divider">
+                    <button  class="log-in-button" routerLink="/user" [ngClass]="{'disabled-btn' : profileForm.invalid}" [disabled]="!profileForm.valid">Log in</button>
+                  </div>
+                  <div class="divider">
+                    <button type="reset" value="Reset" class="reset-button">Reset</button>
+                  </div>
+              </div>
+            </form> 
+            <!-- Register Validation -->
+            <form [formGroup]="profileForm2" (ngSubmit)="onDoSubmitConfirm()" *ngIf="pageTitle == 'REGISTER'">
+              <div class="divider-container">
+                <div class="divider">
+                    <span>User Name</span>
+                    <input type="text" class="custom-input" formControlName="nameConfirm"/>
+                    <div *ngIf="profileForm2.controls['nameConfirm'].invalid && (profileForm2.controls['nameConfirm'].dirty || profileForm2.controls['nameConfirm'].touched)">
+                        <div *ngIf="profileForm2.controls['nameConfirm'].errors" style="color:red">
+                            *Name is required.
+                        </div>
+                    </div>
+                  </div>
+                  <div class="divider">
+                    <span>Password</span>
+                    <div class="divider-icon-input-container">
+                      <input [type]="passwordType" class="custom-input" formControlName="confirmPassword"/>
+                      <fa-icon [icon]="faEyeSlash" class="divider-icon" (click)="showPasswordEye()" *ngIf="closeEye2"></fa-icon>
+                      <fa-icon [icon]="faEye" class="divider-icon" (click)="dontShowPasswordEye()" *ngIf="openEye2"></fa-icon>
+                    </div>
+                    <div *ngIf="profileForm2.controls['confirmPassword'].invalid && (profileForm2.controls['confirmPassword'].dirty || profileForm2.controls['confirmPassword'].touched)">
+                        <div *ngIf="profileForm2.controls['confirmPassword'].errors" style="color:red">
+                            *Name is required.
+                        </div>
+                    </div>
+                  </div>
+                  <div class="divider">
+                    <span>Confirm Password</span>
+                    <div class="divider-icon-input-container">
+                      <input [type]="confirmPasswordType" class="custom-input" formControlName="confirmPassword2"/>
+                      <fa-icon [icon]="faEyeSlash" class="divider-icon" (click)="showConfirmEye()" *ngIf="closeEye"></fa-icon>
+                      <fa-icon [icon]="faEye" class="divider-icon" (click)="dontShowConfirmEye()" *ngIf="openEye"></fa-icon>
+                    </div>
+                    <div *ngIf="profileForm2.controls['confirmPassword2'].invalid && (profileForm2.controls['confirmPassword2'].dirty || profileForm2.controls['confirmPassword2'].touched)">
+                        <div *ngIf="profileForm2.controls['confirmPassword2'].errors" style="color:red">
+                            Name is required.
+                        </div>
+                    </div>
+                  </div>
+                  <div class="divider">
+                    <span>User Type</span>
+                    <select class="custom-select">
+                      <option>Admin</option>
+                      <option>User</option>
+                    </select>
+                  </div>
+                  <div class="divider">
+                    <button class="register-button" [ngClass]="{'disabled-btn' : profileForm2.invalid}" [disabled]="!profileForm2.valid">Register</button>
+                  </div>
+                  <div class="divider">
+                    <button type="reset" value="Reset" class="reset-button">Reset</button>
+                  </div>
+              </div>
+            </form> 
+
+        </div>
+      </div>
+    </div>
+    
+  </div>

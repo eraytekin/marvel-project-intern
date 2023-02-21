@@ -1,0 +1,136 @@
+<div class="general-container">
+
+    <div class="buy-text-container">
+        <span>BUY</span>
+    </div>
+
+    <div class="buy-form-container">
+
+        <div class="product-container">
+            <div class="product-in-container">
+                <div class="product-info">
+                    <div class="remove-button-area"> <button class="remove-product">X</button> </div>
+                    <div>
+                        <div class="product-name">MACBOOK PRO</div>
+                        <div class="product-description">(1258TB i79 95ghz 1250GB)</div>
+                    </div>
+                </div>
+                <div class="product-price">
+                    <span>Piece  X  Price  =  <b>Total Price</b></span>
+                </div>
+            </div>
+            
+        </div>
+        <div class="buy-container">
+            <button class="buy-all-this-things" (click)="openPopUp()">BUY <fa-icon [icon]="dollarSign"></fa-icon></button>
+        </div>
+    </div>
+    <!-- POP-UP burada -->
+    <div class="pop-up-container" *ngIf="openToPopUp">
+        
+        <div class="pop-up-container">
+            <div class="main-pop-up">
+                <fa-icon [icon]="deleteIcon" (click)="closePopUp()" class="delete-icon"></fa-icon>
+                <div class="inner-main">
+                    <div class="up-inner-main">
+                        <!--Flip card container burdan itibaren başlıyor-->
+                        <div class="pay-card-container" [ngClass]="{'is-flipped': showBack}">
+                            <div class="pay-card-front">
+                                <div class="up-card">
+                                    <img class="card-logo" src="https://download.logo.wine/logo/Mastercard/Mastercard-Logo.wine.png"/>
+                                </div>
+                                <div class="middle-card">
+                                    <div class="middle-in-card">
+                                        <div>{{ cardNumber1 }}</div>
+                                        <div>{{ cardNumber2 }}</div>
+                                        <div>{{ cardNumber3 }}</div>
+                                        <div>{{ cardNumber4 }}</div>
+                                    </div>
+                                </div>
+                                <div class="down-card">
+                                   <div class="down-1"> 
+                                        <label>Card Holder</label>
+                                        <div>
+                                            {{ cardHolder }}
+                                        </div>
+                                   </div>
+                                   <div class="down-2"> 
+                                        <label>Expires</label>
+                                        <div>
+                                            {{ cardMonth }} / {{ cardYear }}
+                                        </div>
+                                   </div>
+                                </div>
+                            </div> 
+                            <div class="pay-card-back">
+                                <div class="pay-card-back-container">
+                                    <label class="ortak">CVV</label>
+                                    <div class="long-line ortak">{{ cardCvv }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="down-inner-main">
+                        <form  [formGroup]="buyForm" (ngSubmit)="onDoSubmitBuy()">
+                            <div class="up-input">
+                                <label>Card Number</label>
+                                <input type="text" maxlength="16" (click)="showBack = false" (input)="showBack = false" (keyup)="everyKeyup()" [(ngModel)]="cardNumber" name="cardNumber" formControlName="cardNumber"/>
+                                <div *ngIf="buyForm.controls['cardNumber'].invalid && (buyForm.controls['cardNumber'].dirty || buyForm.controls['cardNumber'].touched)">
+                                    <div *ngIf="buyForm.controls['cardNumber'].errors" class="required-class">
+                                        *Card Number is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="up-input">
+                                <label>Card Holders</label>
+                                <input type="text" (click)="showBack = false" (input)="showBack = false" [(ngModel)]="cardHolder" name="cardHolder" formControlName="cardHolders"/>
+                                <div *ngIf="buyForm.controls['cardHolders'].invalid && (buyForm.controls['cardHolders'].dirty || buyForm.controls['cardHolders'].touched)">
+                                    <div *ngIf="buyForm.controls['cardHolders'].errors" class="required-class">
+                                        *Card Holders is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- select'ler ve cvv-->
+                            <div class="down-input">
+                                <div class="down-select-input">
+                                    <label>Expiration Date</label>
+                                    <div class="select-container">
+                                        <select (click)="showBack = false" [(ngModel)]="cardMonth" name="cardMonth" formControlName="cardMonth">
+                                            <option *ngFor="let num of cardMonthNumber">{{ num }}</option>
+                                        </select>
+                                        <div *ngIf="buyForm.controls['cardMonth'].invalid && (buyForm.controls['cardMonth'].dirty || buyForm.controls['cardMonth'].touched)">
+                                            <div *ngIf="buyForm.controls['cardMonth'].errors" class="required-class">
+                                                *Card Month is required.
+                                            </div>
+                                        </div>
+                                        <select (click)="showBack = false" [(ngModel)]="cardYear" name="cardYear" formControlName="cardYear">
+                                            <option *ngFor="let num2 of cardYearNumber">{{ num2 }}</option>
+                                        </select>
+                                        <div *ngIf="buyForm.controls['cardMonth'].invalid && (buyForm.controls['cardMonth'].dirty || buyForm.controls['cardMonth'].touched)">
+                                            <div *ngIf="buyForm.controls['cardMonth'].errors" class="required-class">
+                                                *Card Year is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="down-cvv-input">
+                                    <label>Cvv</label>
+                                    <input type="text" (click)="flipToBack()" (input)="flipToBack()" [(ngModel)]="cardCvv" name="cardCvv" formControlName="cardCvv">
+                                    <div *ngIf="buyForm.controls['cardCvv'].invalid && (buyForm.controls['cardCvv'].dirty || buyForm.controls['cardCvv'].touched)">
+                                        <div *ngIf="buyForm.controls['cardCvv'].errors" class="required-class">
+                                            *Cvv is required.
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <!--Button-->
+                            <div class="button-input">
+                                <button (click)="log()" [ngClass]="{'disabled-btn' : buyForm.invalid}" [disabled]="!buyForm.valid">PAY</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
